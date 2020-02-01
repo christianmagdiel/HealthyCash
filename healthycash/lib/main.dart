@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'healthyCash',
-      initialRoute: 'login',
+      initialRoute: 'home',
       routes: getAplicationRoutes(),
       onGenerateRoute: (RouteSettings setting){
             return MaterialPageRoute(
