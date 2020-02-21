@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "765214663316",
+    "firebase_url": "https://healthycash-a643e.firebaseio.com",
+    "project_id": "healthycash-a643e",
+    "storage_bucket": "healthycash-a643e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:765214663316:android:422481219d3f19f1c88a81",
+        "android_client_info": {
+          "package_name": "com.example.healthycash"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "765214663316-vutla0fnpi5vp58oul26pk6pa6sb3bpc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB8LC_01pFUlqnwusHz-uvWw77QfHZBoWs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "765214663316-vutla0fnpi5vp58oul26pk6pa6sb3bpc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
