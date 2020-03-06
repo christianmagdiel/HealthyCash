@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:healthycash/src/widgets/category_selector_widget.dart';
@@ -9,7 +10,7 @@ class AddPage extends StatefulWidget {
 
 class _AddPageState extends State<AddPage> {
   String category;
-  double value = 0;
+  int value = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,10 +57,11 @@ class _AddPageState extends State<AddPage> {
   }
 
   _currentValue() {
+    var realValue = value /100.0;
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 32),
       child: Text(
-        "\$${value.toStringAsFixed(2)}",
+        "\$${realValue.toStringAsFixed(2)}",
         style: TextStyle(
             fontSize: 50,
             color: Colors.blueAccent,
@@ -73,7 +75,11 @@ class _AddPageState extends State<AddPage> {
       behavior: HitTestBehavior.opaque,
       onTap: () {
         setState(() {
+          if(text == ','){
+            value = value * 100;
+          }else{
           value = value * 10 + int.parse(text);
+          }
         });
       },
       child: Container(
@@ -114,7 +120,7 @@ class _AddPageState extends State<AddPage> {
             GestureDetector(
               onTap: () {
                 setState(() {
-                  value = value ~/ 10.toInt() + (value - value.toInt());
+                  value = value ~/ 10.toInt();
                 });
               },
               child: Container(
@@ -134,24 +140,35 @@ class _AddPageState extends State<AddPage> {
 
   _submit() {
     return Builder(builder: (BuildContext context) {
-      return Container(
-        height: 50,
-        width: double.infinity,
-        decoration: BoxDecoration(color: Colors.blueAccent),
-        child: MaterialButton(
-            child: Text(
-              'Add Expense',
-              style: TextStyle(color: Colors.white, fontSize: 20),
-            ),
-            onPressed: () {
-              if (value > 0 && category != '') {
-                //Guardar valores
-              } else {
-                Scaffold.of(context).showSnackBar(SnackBar(
-                  content: Text('Selecciona un valor y una categoria'),
-                ));
-              }
-            }),
+      return Hero(
+         tag: "add_hero",
+              child: Container(
+          height: 50,
+          width: double.infinity,
+          decoration: BoxDecoration(color: Colors.blueAccent),
+          child: MaterialButton(
+              child: Text(
+                'Add Expense',
+                style: TextStyle(color: Colors.white, fontSize: 20),
+              ),
+              onPressed: () {
+                if (value > 0 && category != '') {
+                  //Guardar valores
+                  Firestore.instance.collection('expenses').document().setData({
+                    'category': category,
+                    'value': value,
+                    'month': DateTime.now().month,
+                    'day': DateTime.now().day
+                  });
+
+                  Navigator.of(context).pop();
+                } else {
+                  Scaffold.of(context).showSnackBar(SnackBar(
+                    content: Text('Selecciona un valor y una categoria'),
+                  ));
+                }
+              }),
+        ),
       );
     });
   }
