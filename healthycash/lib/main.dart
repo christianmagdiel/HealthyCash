@@ -16,7 +16,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'healthyCash',
-      //initialRoute: 'login',
+      initialRoute: 'controlador',
       routes: getAplicationRoutes(),
       onGenerateRoute: (RouteSettings setting){
             return MaterialPageRoute(

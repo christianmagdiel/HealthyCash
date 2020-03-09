@@ -8,16 +8,18 @@ import '../pages/home_page.dart';
 import '../pages/login_page.dart';
 
 Map<String, WidgetBuilder> getAplicationRoutes() {
-  bool _isLoggin = false;
+  // bool _isLoggin = false;
   return <String, WidgetBuilder>{
-    'controller': (BuildContext context) => ControladorPage(),
-    '/': (BuildContext context) {
-      if (_isLoggin) {
-        return HomePage();
-      } else {
-        return LoginPage();
-      }
-    },
+    'controlador': (BuildContext context) => ControladorPage(),
+    '/': (BuildContext context) => HomePage(),
+    'login': (BuildContext context) => LoginPage(),
+    // '/': (BuildContext context) {
+    //   if (_isLoggin) {
+    //     return HomePage();
+    //   } else {
+    //     return LoginPage();
+    //   }
+    // },
     'add': (BuildContext context) => AddPage()
   };
 }

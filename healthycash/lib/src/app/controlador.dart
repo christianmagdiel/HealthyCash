@@ -7,19 +7,22 @@ class ControladorPage extends StatefulWidget {
 }
 
 class _ControladorPageState extends State<ControladorPage> {
-
   @override
-  void initState() { 
+  void initState() {
     super.initState();
     this._ckeck();
   }
 
-  _ckeck() async{
+  _ckeck() async {
     bool isLoggin = false;
     if (isLoggin) {
-      Navigator.pushReplacementNamed(context, 'home');
+      await Future.delayed(Duration.zero, () {
+        Navigator.pushReplacementNamed(context, '/');
+      });
     } else {
-      Navigator.pushReplacementNamed(context, 'home');
+      await Future.delayed(Duration.zero, () {
+        Navigator.pushReplacementNamed(context, 'login');
+      });
     }
   }
 
